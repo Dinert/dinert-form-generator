@@ -57,8 +57,7 @@ export default {
     inheritAttrs: false,
     props: {
         showFileName: {
-            type: String,
-            default: ''
+            type: Boolean
         }
     },
     data() {
@@ -114,6 +113,3 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
