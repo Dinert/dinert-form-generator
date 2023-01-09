@@ -371,7 +371,7 @@
                         </draggable>
                         <div style="margin-left: 20px;">
                             <el-button
-                                style="padding-bottom: 0"
+                                style="padding-bottom: 0;"
                                 icon="el-icon-circle-plus-outline"
                                 type="text"
                                 @click="addSelectItem"
@@ -447,9 +447,9 @@
                             :expand-on-click-node="false"
                             :render-content="renderContent"
                         />
-                        <div v-if="activeData.__config__.dataType === 'static'" style="margin-left: 20px">
+                        <div v-if="activeData.__config__.dataType === 'static'" style="margin-left: 20px;">
                             <el-button
-                                style="padding-bottom: 0"
+                                style="padding-bottom: 0;"
                                 icon="el-icon-circle-plus-outline"
                                 type="text"
                                 @click="addTreeItem"
@@ -619,11 +619,11 @@
                             <el-form-item label="表达式">
                                 <el-input v-model="item.pattern" placeholder="请输入正则"/>
                             </el-form-item>
-                            <el-form-item label="错误提示" style="margin-bottom:0">
+                            <el-form-item label="错误提示" style="margin-bottom: 0;">
                                 <el-input v-model="item.message" placeholder="请输入错误提示"/>
                             </el-form-item>
                         </div>
-                        <div style="margin-left: 20px">
+                        <div style="margin-left: 20px;">
                             <el-button icon="el-icon-circle-plus-outline" type="text"
                                 @click="addReg"
                             >
@@ -632,6 +632,7 @@
                         </div>
                     </template>
                 </el-form>
+
                 <!-- 表单属性 -->
                 <el-form v-show="currentTab === 'form'" size="small"
                     label-width="90px"
@@ -732,6 +733,7 @@ export default {
         TreeNodeDialog,
         IconsDialog
     },
+    // eslint-disable-next-line vue/require-prop-types
     props: ['showField', 'activeData', 'formConf'],
     data() {
         return {
@@ -1030,76 +1032,90 @@ export default {
 
 <style lang="scss" scoped>
 .right-board {
-  width: 350px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding-top: 3px;
-  .field-box {
-    position: relative;
-    height: calc(100vh - 42px);
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-  .el-scrollbar {
-    height: 100%;
-  }
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 3px;
+    width: 350px;
+
+    .field-box {
+        position: relative;
+        overflow: hidden;
+        height: calc(100vh - 42px);
+        box-sizing: border-box;
+    }
+
+    .el-scrollbar {
+        height: 100%;
+    }
 }
+
 .select-item {
-  display: flex;
-  border: 1px dashed #fff;
-  box-sizing: border-box;
-  & .close-btn {
-    cursor: pointer;
-    color: #f56c6c;
-  }
-  & .el-input + .el-input {
-    margin-left: 4px;
-  }
+    display: flex;
+    border: 1px dashed #fff;
+    box-sizing: border-box;
+
+    & .close-btn {
+        cursor: pointer;
+        color: #f56c6c;
+    }
+
+    & .el-input + .el-input {
+        margin-left: 4px;
+    }
 }
+
 .select-item + .select-item {
-  margin-top: 4px;
+    margin-top: 4px;
 }
+
 .select-item.sortable-chosen {
-  border: 1px dashed #409eff;
+    border: 1px dashed #409eff;
 }
+
 .select-line-icon {
-  line-height: 32px;
-  font-size: 22px;
-  padding: 0 4px;
-  color: #777;
+    padding: 0 4px;
+    font-size: 22px;
+    color: #777;
+    line-height: 32px;
 }
+
 .option-drag {
-  cursor: move;
+    cursor: move;
 }
+
 .time-range {
-  .el-date-editor {
-    width: 227px;
-  }
-  ::v-deep .el-icon-time {
-    display: none;
-  }
+    .el-date-editor {
+        width: 227px;
+    }
+
+    ::v-deep .el-icon-time {
+        display: none;
+    }
 }
+
 .document-link {
-  position: absolute;
-  display: block;
-  width: 26px;
-  height: 26px;
-  top: 0;
-  left: 0;
-  cursor: pointer;
-  background: #409eff;
-  z-index: 1;
-  border-radius: 0 0 6px 0;
-  text-align: center;
-  line-height: 26px;
-  color: #fff;
-  font-size: 18px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    width: 26px;
+    height: 26px;
+    font-size: 18px;
+    border-radius: 0 0 6px;
+    text-align: center;
+    color: #fff;
+    background: #409eff;
+    cursor: pointer;
+    line-height: 26px;
 }
-.node-label{
-  font-size: 14px;
+
+.node-label {
+    font-size: 14px;
 }
-.node-icon{
-  color: #bebfc3;
+
+.node-icon {
+    color: #bebfc3;
 }
 </style>

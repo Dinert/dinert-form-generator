@@ -24,7 +24,7 @@ module.exports = {
       template: 'public/index.html',
       filename: 'index.html',
       chunks: ['chunk-vendors', 'chunk-common', 'index'],
-      minify
+
     },
     preview: {
       entry: 'src/views/preview/main.js',
@@ -35,6 +35,7 @@ module.exports = {
     }
   },
   devServer: {
+    port: 3008,
     overlay: false
   },
 
