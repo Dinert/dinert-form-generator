@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import { beautifierConf } from '@/utils/index'
+import {beautifierConf} from '@/utils/index'
 import ClipboardJS from 'clipboard'
-import { saveAs } from 'file-saver'
+import {saveAs} from 'file-saver'
 import loadMonaco from '@/utils/loadMonaco'
 import loadBeautifier from '@/utils/loadBeautifier'
 
@@ -110,10 +110,10 @@ export default {
                 inputValue: `${+new Date()}.json`,
                 closeOnClickModal: false,
                 inputPlaceholder: '请输入文件名'
-            }).then(({ value }) => {
-                if (!value) value = `${+new Date()}.json`
+            }).then(({value}) => {
+                if (!value) {value = `${+new Date()}.json`}
                 const codeStr = this.jsonEditor.getValue()
-                const blob = new Blob([codeStr], { type: 'text/plain;charset=utf-8' })
+                const blob = new Blob([codeStr], {type: 'text/plain;charset=utf-8'})
                 saveAs(blob, value)
             })
         },

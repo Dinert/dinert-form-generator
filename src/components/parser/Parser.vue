@@ -1,5 +1,5 @@
 <script>
-import { deepClone } from '@/utils/index'
+import {deepClone} from '@/utils/index'
 import render from '@/components/render/render.js'
 
 const ruleTrigger = {
@@ -20,7 +20,7 @@ const layouts = {
         const listeners = buildListeners.call(this, scheme)
 
         let labelWidth = config.labelWidth ? `${config.labelWidth}px` : null
-        if (config.showLabel === false) labelWidth = '0'
+        if (config.showLabel === false) {labelWidth = '0'}
         return (
       <el-col span={config.span}>
         <el-form-item label-width={labelWidth} prop={scheme.__vModel__}
@@ -48,7 +48,7 @@ const layouts = {
 }
 
 function renderFrom(h) {
-    const { formConfCopy } = this
+    const {formConfCopy} = this
 
     return (
     <el-row gutter={formConfCopy.gutter}>
@@ -59,7 +59,7 @@ function renderFrom(h) {
         label-width={`${formConfCopy.labelWidth}px`}
         ref={formConfCopy.formRef}
         // model不能直接赋值 https://github.com/vuejs/jsx/issues/49#issuecomment-472013664
-        props={{ model: this[formConfCopy.formModel] }}
+        props={{model: this[formConfCopy.formModel]}}
         rules={this[formConfCopy.formRules]}
       >
         {renderFormItem.call(this, h, formConfCopy.fields)}
@@ -92,7 +92,7 @@ function renderFormItem(h, elementList) {
 
 function renderChildren(h, scheme) {
     const config = scheme.__config__
-    if (!Array.isArray(config.children)) return null
+    if (!Array.isArray(config.children)) {return null}
     return renderFormItem.call(this, h, config.children)
 }
 
@@ -140,8 +140,8 @@ export default {
         initFormData(componentList, formData) {
             componentList.forEach(cur => {
                 const config = cur.__config__
-                if (cur.__vModel__) formData[cur.__vModel__] = config.defaultValue
-                if (config.children) this.initFormData(config.children, formData)
+                if (cur.__vModel__) {formData[cur.__vModel__] = config.defaultValue}
+                if (config.children) {this.initFormData(config.children, formData)}
             })
         },
         buildRules(componentList, rules) {
@@ -149,7 +149,7 @@ export default {
                 const config = cur.__config__
                 if (Array.isArray(config.regList)) {
                     if (config.required) {
-                        const required = { required: config.required, message: cur.placeholder }
+                        const required = {required: config.required, message: cur.placeholder}
                         if (Array.isArray(config.defaultValue)) {
                             required.type = 'array'
                             required.message = `请至少选择一个${config.label}`
@@ -163,7 +163,7 @@ export default {
                         return item
                     })
                 }
-                if (config.children) this.buildRules(config.children, rules)
+                if (config.children) {this.buildRules(config.children, rules)}
             })
         },
         resetForm() {
@@ -172,7 +172,7 @@ export default {
         },
         submitForm() {
             this.$refs[this.formConf.formRef].validate(valid => {
-                if (!valid) return false
+                if (!valid) {return false}
                 // 触发sumit事件
                 this.$emit('submit', this[this.formConf.formModel])
                 return true

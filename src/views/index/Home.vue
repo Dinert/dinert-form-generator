@@ -136,8 +136,8 @@
 
 <script>
 import draggable from 'vuedraggable'
-import { debounce } from 'throttle-debounce'
-import { saveAs } from 'file-saver'
+import {debounce} from 'throttle-debounce'
+import {saveAs} from 'file-saver'
 import ClipboardJS from 'clipboard'
 import render from '@/components/render/render'
 import FormDrawer from './FormDrawer'
@@ -152,8 +152,8 @@ import {
 import {
     makeUpHtml, vueTemplate, vueScript, cssStyle
 } from '@/components/generator/html'
-import { makeUpJs } from '@/components/generator/js'
-import { makeUpCss } from '@/components/generator/css'
+import {makeUpJs} from '@/components/generator/js'
+import {makeUpCss} from '@/components/generator/css'
 import drawingDefalut from '@/components/generator/drawingDefalut'
 import logo from '@/assets/logo.png'
 import CodeTypeDialog from './CodeTypeDialog'
@@ -164,7 +164,7 @@ import {
 import loadBeautifier from '@/utils/loadBeautifier'
 
 let beautifier
-const emptyActiveData = { style: {}, autosize: {} }
+const emptyActiveData = {style: {}, autosize: {}}
 let oldActiveId
 let tempActiveData
 const drawingListInDB = getDrawingList()
@@ -241,7 +241,7 @@ export default {
         drawingList: {
             handler(val) {
                 this.saveDrawingListDebounce(val)
-                if (val.length === 0) this.idGlobal = 100
+                if (val.length === 0) {this.idGlobal = 100}
             },
             deep: true
         },
@@ -293,8 +293,8 @@ export default {
             }, obj)
         },
         setRespData(component, resp) {
-            const { dataPath, renderKey, dataConsumer } = component.__config__
-            if (!dataPath || !dataConsumer) return
+            const {dataPath, renderKey, dataConsumer} = component.__config__
+            if (!dataPath || !dataConsumer) {return}
             const respData = dataPath.split('.').reduce((pre, item) => pre[item], resp)
 
             // 将请求回来的数据，赋值到指定属性。
@@ -303,10 +303,10 @@ export default {
             // 但为支持更深层级的赋值（如：dataConsumer的值为'options.data'）,使用setObjectValueReduce
             this.setObjectValueReduce(component, dataConsumer, respData)
             const i = this.drawingList.findIndex(item => item.__config__.renderKey === renderKey)
-            if (i > -1) this.$set(this.drawingList, i, component)
+            if (i > -1) {this.$set(this.drawingList, i, component)}
         },
         fetchData(component) {
-            const { dataType, method, url } = component.__config__
+            const {dataType, method, url} = component.__config__
             if (dataType === 'dynamic' && method && url) {
                 this.setLoading(component, true)
                 this.$axios({
@@ -319,10 +319,10 @@ export default {
             }
         },
         setLoading(component, val) {
-            const { directives } = component
+            const {directives} = component
             if (Array.isArray(directives)) {
                 const t = directives.find(d => d.name === 'loading')
-                if (t) t.value = val
+                if (t) {t.value = val}
             }
         },
         activeFormItem(currentItem) {
@@ -385,14 +385,14 @@ export default {
         },
         execDownload(data) {
             const codeStr = this.generateCode()
-            const blob = new Blob([codeStr], { type: 'text/plain;charset=utf-8' })
+            const blob = new Blob([codeStr], {type: 'text/plain;charset=utf-8'})
             saveAs(blob, data.fileName)
         },
         execCopy(data) {
             document.getElementById('copyNode').click()
         },
         empty() {
-            this.$confirm('确定要清空所有组件吗？', '提示', { type: 'warning' }).then(
+            this.$confirm('确定要清空所有组件吗？', '提示', {type: 'warning'}).then(
                 () => {
                     this.drawingList = []
                     this.idGlobal = 100
@@ -415,7 +415,7 @@ export default {
             })
         },
         generateCode() {
-            const { type } = this.generateConf
+            const {type} = this.generateConf
             this.AssembleFormData()
             const script = vueScript(makeUpJs(this.formData, type))
             const html = vueTemplate(makeUpHtml(this.formData, type))
@@ -467,7 +467,7 @@ export default {
                 list.splice(index, 1, newTag)
             } else {
                 list.forEach(item => {
-                    if (Array.isArray(item.__config__.children)) this.updateDrawingList(newTag, item.__config__.children)
+                    if (Array.isArray(item.__config__.children)) {this.updateDrawingList(newTag, item.__config__.children)}
                 })
             }
         },

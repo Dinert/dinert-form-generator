@@ -10,7 +10,8 @@
     "build:tinymce": "vue-cli-service build --target lib --name form-gen-tinymce --dest ./src/components/tinymce/lib/ ./src/components/tinymce/index.js",
     "lint": "vue-cli-service lint",
     "dev": "vue-cli-service serve",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "eslint": "eslint src/**/*.js src/**/*.vue --fix"
   },
   "dependencies": {
     "@babel/core": "^7.19.3",

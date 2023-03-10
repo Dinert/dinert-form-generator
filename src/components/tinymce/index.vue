@@ -1,11 +1,11 @@
 <template>
-    <textarea :id="tinymceId" style="visibility: hidden"></textarea>
+    <textarea :id="tinymceId" style="visibility: hidden;"></textarea>
 </template>
 
 <script>
 import loadTinymce from '@/utils/loadTinymce'
-import { plugins, toolbar } from './config'
-import { debounce } from 'throttle-debounce'
+import {plugins, toolbar} from './config'
+import {debounce} from 'throttle-debounce'
 
 let num = 1
 
@@ -53,7 +53,7 @@ export default {
             }
             conf = Object.assign(conf, this.$attrs)
             conf.init_instance_callback = editor => {
-                if (this.value) editor.setContent(this.value)
+                if (this.value) {editor.setContent(this.value)}
                 this.vModel(editor)
             }
             tinymce.init(conf)
@@ -68,7 +68,7 @@ export default {
             const debounceSetContent = debounce(250, editor.setContent)
             this.$watch('value', (val, prevVal) => {
                 if (editor && val !== prevVal && val !== editor.getContent()) {
-                    if (typeof val !== 'string') val = val.toString()
+                    if (typeof val !== 'string') {val = val.toString()}
                     debounceSetContent.call(editor, val)
                 }
             })
@@ -78,7 +78,7 @@ export default {
             })
         },
         destroyTinymce() {
-            if (!window.tinymce) return
+            if (!window.tinymce) {return}
             const tinymce = window.tinymce.get(this.tinymceId)
             if (tinymce) {
                 tinymce.destroy()

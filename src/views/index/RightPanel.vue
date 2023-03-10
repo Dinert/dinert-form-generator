@@ -705,14 +705,14 @@
 </template>
 
 <script>
-import { isArray } from 'util'
+import {isArray} from 'util'
 import TreeNodeDialog from '@/views/index/TreeNodeDialog'
-import { isNumberStr } from '@/utils/index'
+import {isNumberStr} from '@/utils/index'
 import IconsDialog from './IconsDialog'
 import {
     inputComponents, selectComponents, layoutComponents
 } from '@/components/generator/config'
-import { saveFormConf } from '@/utils/db'
+import {saveFormConf} from '@/utils/db'
 
 const dateTimeFormat = {
     date: 'yyyy-MM-dd',
@@ -900,7 +900,7 @@ export default {
             this.dialogVisible = true
             this.currentNode = this.activeData.options
         },
-        renderContent(h, { node, data, store }) {
+        renderContent(h, {node, data, store}) {
             return (
         <div class="custom-tree-node">
           <span>{node.label}</span>
@@ -926,7 +926,7 @@ export default {
         },
         remove(node, data) {
             this.activeData.__config__.defaultValue = [] // 避免删除时报错
-            const { parent } = node
+            const {parent} = node
             const children = parent.data.children || parent.data
             const index = children.findIndex(d => d.id === data.id)
             children.splice(index, 1)
@@ -999,10 +999,10 @@ export default {
             )
         },
         rateTextChange(val) {
-            if (val) this.activeData['show-score'] = false
+            if (val) {this.activeData['show-score'] = false}
         },
         rateScoreChange(val) {
-            if (val) this.activeData['show-text'] = false
+            if (val) {this.activeData['show-text'] = false}
         },
         colorFormatChange(val) {
             this.activeData.__config__.defaultValue = null
@@ -1018,7 +1018,7 @@ export default {
         },
         tagChange(tagIcon) {
             let target = inputComponents.find(item => item.__config__.tagIcon === tagIcon)
-            if (!target) target = selectComponents.find(item => item.__config__.tagIcon === tagIcon)
+            if (!target) {target = selectComponents.find(item => item.__config__.tagIcon === tagIcon)}
             this.$emit('tag-change', target)
         },
         changeRenderKey() {

@@ -4,8 +4,8 @@
         <el-drawer v-bind="$attrs" v-on="$listeners"
             @opened="onOpen" @close="onClose"
         >
-            <div style="height:100%">
-                <el-row style="height:100%;overflow:auto">
+            <div style="height: 100%;">
+                <el-row style="overflow: auto;height: 100%;">
                     <el-col :md="24" :lg="12"
                         class="left-editor"
                     >
@@ -95,15 +95,15 @@
     </div>
 </template>
 <script>
-import { parse } from '@babel/parser'
+import {parse} from '@babel/parser'
 import ClipboardJS from 'clipboard'
-import { saveAs } from 'file-saver'
+import {saveAs} from 'file-saver'
 import {
     makeUpHtml, vueTemplate, vueScript, cssStyle
 } from '@/components/generator/html'
-import { makeUpJs } from '@/components/generator/js'
-import { makeUpCss } from '@/components/generator/css'
-import { exportDefault, beautifierConf, titleCase } from '@/utils/index'
+import {makeUpJs} from '@/components/generator/js'
+import {makeUpCss} from '@/components/generator/css'
+import {exportDefault, beautifierConf, titleCase} from '@/utils/index'
 import ResourceDialog from './ResourceDialog'
 import loadMonaco from '@/utils/loadMonaco'
 import loadBeautifier from '@/utils/loadBeautifier'
@@ -122,7 +122,7 @@ let beautifier
 let monaco
 
 export default {
-    components: { ResourceDialog },
+    components: {ResourceDialog},
     // eslint-disable-next-line vue/require-prop-types
     props: ['formData', 'generateConf'],
     data() {
@@ -176,7 +176,7 @@ export default {
             }
         },
         onOpen() {
-            const { type } = this.generateConf
+            const {type} = this.generateConf
             this.htmlCode = makeUpHtml(this.formData, type)
             this.jsCode = makeUpJs(this.formData, type)
             this.cssCode = makeUpCss(this.formData)
@@ -230,7 +230,7 @@ export default {
         runCode() {
             const jsCodeStr = editorObj.js.getValue()
             try {
-                const ast = parse(jsCodeStr, { sourceType: 'module' })
+                const ast = parse(jsCodeStr, {sourceType: 'module'})
                 const astBody = ast.program.body
                 if (astBody.length > 1) {
                     this.$confirm(
@@ -278,10 +278,10 @@ export default {
                 inputValue: `${+new Date()}.vue`,
                 closeOnClickModal: false,
                 inputPlaceholder: '请输入文件名'
-            }).then(({ value }) => {
-                if (!value) value = `${+new Date()}.vue`
+            }).then(({value}) => {
+                if (!value) {value = `${+new Date()}.vue`}
                 const codeStr = this.generateCode()
-                const blob = new Blob([codeStr], { type: 'text/plain;charset=utf-8' })
+                const blob = new Blob([codeStr], {type: 'text/plain;charset=utf-8'})
                 saveAs(blob, value)
             })
         },
@@ -311,42 +311,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/mixin.scss';
+/* stylelint-disable-next-line import-notation */
+@import "@/styles/mixin.scss";
+
 .tab-editor {
-  position: absolute;
-  top: 33px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  font-size: 14px;
+    position: absolute;
+    top: 33px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-size: 14px;
 }
+
 .left-editor {
-  position: relative;
-  height: 100%;
-  background: #1e1e1e;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    background: #1e1e1e;
 }
-.setting{
-  position: absolute;
-  right: 15px;
-  top: 3px;
-  color: #a9f122;
-  font-size: 18px;
-  cursor: pointer;
-  z-index: 1;
+
+.setting {
+    position: absolute;
+    top: 3px;
+    right: 15px;
+    z-index: 1;
+    font-size: 18px;
+    color: #a9f122;
+    cursor: pointer;
 }
+
 .right-preview {
-  height: 100%;
-  .result-wrapper {
-    height: calc(100vh - 33px);
-    width: 100%;
-    overflow: auto;
-    padding: 12px;
-    box-sizing: border-box;
-  }
+    height: 100%;
+
+    .result-wrapper {
+        overflow: auto;
+        padding: 12px;
+        width: 100%;
+        height: calc(100vh - 33px);
+        box-sizing: border-box;
+    }
 }
+
 @include action-bar;
+
 ::v-deep .el-drawer__header {
-  display: none;
+    display: none;
 }
 </style>

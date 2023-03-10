@@ -71,8 +71,8 @@
     </div>
 </template>
 <script>
-import { isNumberStr } from '@/utils/index'
-import { getTreeNodeId, saveTreeNodeId } from '@/utils/db'
+import {isNumberStr} from '@/utils/index'
+import {getTreeNodeId, saveTreeNodeId} from '@/utils/db'
 
 const id = getTreeNodeId()
 
@@ -141,7 +141,7 @@ export default {
         },
         handelConfirm() {
             this.$refs.elForm.validate(valid => {
-                if (!valid) return
+                if (!valid) {return}
                 if (this.dataType === 'number') {
                     this.formData.value = parseFloat(this.formData.value)
                 }

@@ -104,8 +104,8 @@ export default {
         },
         handelConfirm() {
             this.$refs.elForm.validate(valid => {
-                if (!valid) return
-                this.$emit('confirm', { ...this.formData })
+                if (!valid) {return}
+                this.$emit('confirm', {...this.formData})
                 this.close()
             })
         }
